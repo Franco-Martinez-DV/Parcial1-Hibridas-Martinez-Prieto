@@ -1,11 +1,12 @@
 /* ---------------------------- Importa las rutas --------------------------- */
-const model1 = require('./model1');
-const model2 = require('./model2');
+const userRouter = require('./userRouter');
+const artistRouter = require('./artistRouter');
+const albumRouter = require('./albumRouter');
 
-function routerAPI( app){
-    // Definimos los endPoints
-    app.use('/api/model1', model1);
-    app.use('/api/model2', model2);
+function routerAPI(app){
+    app.use('/api/users', userRouter);
+    app.use('/api/artists', artistRouter);
+    app.use('/api/albums', albumRouter);
 }
 
 module.exports = routerAPI;
