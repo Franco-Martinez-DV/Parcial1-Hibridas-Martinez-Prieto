@@ -19,7 +19,7 @@ const addAlbum = async (req, res) => {
 
 const getAlbums = async (req, res) => {
     const album = await Album.find();
-    res.status(500).json({ msg: "Estos son los albums disponibles:", data: album });
+    res.status(500).json({ msg: "Estos son los albums disponibles en nuestra base de datos:", data: album });
 };
 
 const getAlbumById = async (req, res) => {
@@ -29,9 +29,9 @@ const getAlbumById = async (req, res) => {
         const album = await Album.findById(id);
 
         if (album) {
-            res.status(200).json({ msg: "Se encontró el album.", data: album });
+            res.status(200).json({ msg: "Se encontró el album por ID.", data: album });
         } else {
-            res.status(404).json({ msg: "No se encontró el album.", data: {} });
+            res.status(404).json({ msg: "No se encontró el album por ID.", data: {} });
         }
     } catch (error) {
         console.error(error);
@@ -46,7 +46,7 @@ const getAlbumByGenre = async (req, res) => {
         const album = await Album.find({ genre });
 
         if (album.length > 0) {
-            res.status(200).json({ msg: `Estos son los albums de género ${genre}.`, data: album });
+            res.status(200).json({ msg: `Estos son los albums del género ${genre}.`, data: album });
         } else {
             res.status(404).json({ msg: `No se encontraron albums del género ${genre}.`, data: {} });
         }
@@ -80,11 +80,11 @@ const deleteAlbumById = async (req, res) => {
         if (album) {
             res.status(200).json({ msg: "Album borrado.", data: album });
         } else {
-            res.status(404).json({ msg: "No se pudo borrar el album.", data: {} });
+            res.status(404).json({ msg: "No se pudo borrar el album por ID.", data: {} });
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Ocurrió un error al querer borrar el album.", data: {} });
+        res.status(500).json({ msg: "Ocurrió un error al querer borrar el album por ID.", data: {} });
     }
 };
 
@@ -98,11 +98,11 @@ const updateAlbumById = async (req, res) => {
         if (album) {
             res.status(200).json({ msg: "Album actualizado.", data: album });
         } else {
-            res.status(404).json({ msg: "No se pudo actualizar el album.", data: {} });
+            res.status(404).json({ msg: "No se pudo actualizar el album por ID.", data: {} });
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Ocurrió un error al querer actualizar el album.", data: {} });
+        res.status(500).json({ msg: "Ocurrió un error al querer actualizar el album por ID.", data: {} });
     }
 };
 

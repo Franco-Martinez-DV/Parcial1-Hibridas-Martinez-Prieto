@@ -33,7 +33,7 @@ const login = async (req, res) => {
 
         const user = await User.findOne({ email });
         if(!user){
-            res.status(401).json({ msg : "El email no existe o no es valido.", data : {} });
+            res.status(401).json({ msg : "El email no existe o no es válido.", data : {} });
         }
 
         const passwordOk = await bcrypt.compare( password, user.password );
@@ -59,7 +59,7 @@ const login = async (req, res) => {
 
 const getUsers = async (req, res) => {
     const users = await User.find();
-    res.status(200).json({ msg: 'Ok', data: users });
+    res.status(200).json({ msg: 'Estos son los usuarios en nuestra base de datos:', data: users });
 }
 
 
@@ -68,14 +68,14 @@ const getUsersById = async ( req, res) => {
     try {
         const user = await User.findById(id);
         if( user ){
-            res.status(200).json({ msg: "Se encontró al usuario.", data: user});
+            res.status(200).json({ msg: "Se encontró al usuario por ID.", data: user});
         } else {
-            res.status(404).json({ msg: "No se encontro el usuario.", data: { }});
+            res.status(404).json({ msg: "No se encontro el usuario por ID.", data: { }});
 
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: 'Hubo un error al buscar al usuario.', data: {}})
+        res.status(500).json({ msg: 'Hubo un error al buscar al usuario por ID.', data: {}})
     }
 }
 
