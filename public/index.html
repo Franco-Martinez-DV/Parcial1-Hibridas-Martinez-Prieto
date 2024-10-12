@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Api</title>
+    <title>Artists API</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
@@ -13,41 +13,247 @@
 
 <body>
     <header>
-        <h1>
-            Api de lo que nosotros querramos
-        </h1>
+        <nav class="navbar navbar-expand-lg bg-primary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="index.html">HOME</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#artists">Artists</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#albums">Albums</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#users">Users</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-    <main>
-        <p>
-            Api de lo que nosotros querramos
-        </p>
-        <h2>
-            Endpoints
-        </h2>
-        <ul>
-            <li>
-                <span></span>
-            </li>
-            <li>
-                <span></span>
-            </li>
-            <li>
-                <span></span>
-            </li>
-            <li>
-                <span></span>
-            </li>
-        </ul>
+
+    <main class="p-4">
+        <div class="container">
+            <h1 class="text-center">ARTISTS API</h1>
+            <p>En la era digital actual, la música es una de las formas de arte más accesibles y apreciadas en todo el mundo. Con el propósito de <b>facilitar la interacción</b> y el <b>descubrimiento de artistas y sus álbumes</b>, diseñamos una API intuitiva y eficiente que permite a desarrolladores y entusiastas acceder a una amplia base de datos de música. Esta API ofrece funcionalidades para explorar información detallada sobre <b>artistas</b>, sus <b>álbumes</b>, <b>géneros</b>, <b>fechas de lanzamiento</b> y más, promoviendo una experiencia enriquecedora que conecta a los usuarios con su música favorita. A través de esta plataforma, buscamos potenciar la <b>creatividad</b> y la <b>innovación</b> en aplicaciones relacionadas con la música, brindando las herramientas necesarias para construir proyectos que celebren el talento musical global.</p>
+        </div>
     </main>
-    <footer>
-        <h3>
+
+    <section class="p-4" id="artists">
+        <div class="container">
+            <h2>ARTISTS</h2>
+            <p>Utiliza nuestra API para acceder a todos los artistas disponibles en nuestra base de datos.</p>
+
+            <div class="d-flex flex-column align-items-start gap-4">
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/artists/</div>
+                    </div>
+                    <small>Obtiene todos los artistas.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-warning text-white border border-warning rounded">
+                        <div class="bg-warning p-3 text-black border border-1 border-warning rounded-start"><b>post</b></div>
+                        <div class="bg-black p-3 border border-1 border-warning rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/artists/</div>
+                    </div>
+                    <small>Permite agregar artistas.</small>
+                </div>
+                
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/artists/:id</div>
+                    </div>
+                    <small>Obtiene los artistas por ID.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-primary text-white border border-primary rounded">
+                        <div class="bg-primary p-3  border border-1 border-primary rounded-start"><b>put</b></div>
+                        <div class="bg-black p-3 border border-1 border-primary rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/artists/:id</div>
+                    </div>
+                    <small>Actualiza los artistas por ID.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-danger text-white border border-danger rounded">
+                        <div class="bg-danger p-3 border border-1 border-danger rounded-start"><b>delete</b></div>
+                        <div class="bg-black p-3 border border-1 border-danger rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/artists/:id</div>
+                    </div>
+                    <small>Borra los artistas por ID.</small>
+                </div>
+                
+
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/artists/name/:name</div>
+                    </div>
+                    <small>Obtiene los artistas por nombre artístico.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/artists/genre/:genre</div>
+                    </div>
+                    <small>Obtiene los artistas por género musical.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/artists/country/:country</div>
+                    </div>
+                    <small>Obtiene los artistas por país de origen.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="p-4" id="albums">
+        <div class="container">
+            <h2>ALBUMS</h2>
+            <p>Utiliza nuestra API para acceder a todos los albums disponibles en nuestra base de datos.</p>
+
+            <div class="d-flex flex-column align-items-start gap-4">
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/albums/</div>
+                    </div>
+                    <small>Obtiene todos los albums.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-warning text-white border border-warning rounded">
+                        <div class="bg-warning p-3 text-black border border-1 border-warning rounded-start"><b>post</b></div>
+                        <div class="bg-black p-3 border border-1 border-warning rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/albums/</div>
+                    </div>
+                    <small>Permite agregar albums.</small>
+                </div>
+                
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/albums/:id</div>
+                    </div>
+                    <small>Obtiene los albums por ID.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-primary text-white border border-primary rounded">
+                        <div class="bg-primary p-3  border border-1 border-primary rounded-start"><b>put</b></div>
+                        <div class="bg-black p-3 border border-1 border-primary rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/albums/:id</div>
+                    </div>
+                    <small>Actualiza los albums por ID.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-danger text-white border border-danger rounded">
+                        <div class="bg-danger p-3 border border-1 border-danger rounded-start"><b>delete</b></div>
+                        <div class="bg-black p-3 border border-1 border-danger rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/albums/:id</div>
+                    </div>
+                    <small>Borra los albums por ID.</small>
+                </div>
+                
+
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/albums/genre/:genre</div>
+                    </div>
+                    <small>Obtiene los albums por género.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/albums/explicits/true</div>
+                    </div>
+                    <small>Obtiene los albums explicitos.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="p-4" id="users">
+        <div class="container">
+            <h2>USERS</h2>
+
+            <div class="d-flex flex-column align-items-start gap-4">
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/users/</div>
+                    </div>
+                    <small>Obtiene todos los usuarios.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-warning text-white border border-warning rounded">
+                        <div class="bg-warning p-3 text-black border border-1 border-warning rounded-start"><b>post</b></div>
+                        <div class="bg-black p-3 border border-1 border-warning rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/users/</div>
+                    </div>
+                    <small>Permite crear usuarios.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-warning text-white border border-warning rounded">
+                        <div class="bg-warning p-3 text-black border border-1 border-warning rounded-start"><b>post</b></div>
+                        <div class="bg-black p-3 border border-1 border-warning rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/users/login</div>
+                    </div>
+                    <small>Permite autenticarse.</small>
+                </div>
+                
+                <div>
+                    <div class="d-flex flex-row bg-success text-white border border-success rounded">
+                        <div class="bg-success p-3 border border-1 border-success rounded-start"><b>get</b></div>
+                        <div class="bg-black p-3 border border-1 border-success rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/users/:id</div>
+                    </div>
+                    <small>Obtiene los usuarios por ID.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-primary text-white border border-primary rounded">
+                        <div class="bg-primary p-3  border border-1 border-primary rounded-start"><b>put</b></div>
+                        <div class="bg-black p-3 border border-1 border-primary rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/users/:id</div>
+                    </div>
+                    <small>Actualiza los usuarios por ID.</small>
+                </div>
+
+                <div>
+                    <div class="d-flex flex-row bg-danger text-white border border-danger rounded">
+                        <div class="bg-danger p-3 border border-1 border-danger rounded-start"><b>delete</b></div>
+                        <div class="bg-black p-3 border border-1 border-danger rounded-end" style="width: max-content;">http://127.0.0.1:3000/api/users/:id</div>
+                    </div>
+                    <small>Borra los usuarios por ID.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-white p-4 d-flex flex-column align-items-center">
+        <h3 class="mb-4">
             Datos de los desarrolladores
         </h3>
+
         <ul>
-            <li class="infoList">Nombre y apellido: Franco Martinez - Santiago Prieto </li>
-            <li class="infoList">Nombre de la materia: Aplicaciones Hibridas</li>
-            <li class="infoList">Nombre del docente: Jonathan Emanuel Cruz</li>
-            <li class="infoList">Comision: DWM4AP</li>
+            <li class="list-group-item"><b>Nombre y apellido:</b> Franco Martinez y Santiago Prieto. </li>
+            <li class="list-group-item"><b>Nombre de la materia:</b> Aplicaciones Hibridas.</li>
+            <li class="list-group-item"><b>Nombre del docente:</b> Jonathan Emanuel Cruz.</li>
+            <li class="list-group-item"><b>Comision:</b> DWM4AP</li>
         </ul>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
