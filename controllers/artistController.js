@@ -57,6 +57,24 @@ const getArtistsByGenre = async (req, res) => {
     }
 };
 
+const getArtistsByCountry = async (req, res) => {
+    const { country } = req.params;
+
+    try {
+        const artists = await Artist.find({ country });
+
+        if (artists.length > 0) {
+            res.status(200).json({ msg: `Estos son los artistas pertenecientes al país ${country}`, data: artists });
+        } else {
+            res.status(404).json({ msg: `No se han encontrado artistas pertenecientes al país ${country}`, data:{} });
+        }
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Ocurrió un error al filtrar por país.", data: {} });
+    }
+};
+
 const deleteArtistById = async (req, res) => {
     const { id } = req.params;
 
@@ -92,4 +110,4 @@ const updateArtistById = async (req, res) => {
     }
 };
 
-module.exports = { addArtist, getArtists, getArtistById, getArtistsByGenre, deleteArtistById, updateArtistById };
+module.exports = { addArtist, getArtists, getArtistById, getArtistsByGenre, getArtistsByCountry, deleteArtistById, updateArtistById };
