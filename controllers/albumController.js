@@ -56,6 +56,21 @@ const getAlbumByGenre = async (req, res) => {
     }
 };
 
+const getExplicitsAlbum = async (req, res) => {
+    try {
+        const album = await Album.find({ is_explicit : true });
+
+        if (album) {
+            res.status(200).json({ msg: `Estos son los albums explicitos.`, data: album });
+        } else {
+            res.status(404).json({ msg: `No se encontraron albums explicitos.`, data: {} });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Ocurrió un error al filtrar por albums explicitos.", data: {} });
+    }
+};
+
 const deleteAlbumById = async (req, res) => {
     const { id } = req.params;
 
@@ -91,4 +106,4 @@ const updateAlbumById = async (req, res) => {
     }
 };
 
-module.exports = { addAlbum, getAlbums, getAlbumById, getAlbumByGenre, deleteAlbumById, updateAlbumById };
+module.exports = { addAlbum, getAlbums, getAlbumById, getAlbumByGenre, getExplicitsAlbum, deleteAlbumById, updateAlbumById };
