@@ -1,4 +1,3 @@
-/* ---------------------------- Importa las rutas --------------------------- */
 const userRouter = require('./userRouter');
 const artistRouter = require('./artistRouter');
 const albumRouter = require('./albumRouter');

@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 
-mongoose.connect(  process.env.URI_BD );
+mongoose.connect(process.env.URI_BD);
 
 const db = mongoose.connection;
 db.on('error', () => console.error('Error'));
-db.once('open', ()=>{
+db.once('open', () => {
     console.log('Conexión correcta');
-})
+});
 
 module.exports = db;

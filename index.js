@@ -7,7 +7,7 @@ const port = process.env.PORT;
 const app = express();
 app.use(express.json());
 app.use(express.static('public') );
-app.use(  (req, res, next) => {
+app.use((req, res, next) => {
     console.log('Soy el middleware');
     next();
 }) 
@@ -17,6 +17,6 @@ app.get('/', (req, res) => {
 
 routerAPI(app);
 
-app.listen( port, () => { 
+app.listen(port, () => { 
     console.log(`Servidor en el puerto ${port}`)
 });
