@@ -39,6 +39,24 @@ const getArtistById = async (req, res) => {
     }
 };
 
+const getArtistsByName = async (req, res) => {
+    const { name } = req.params;
+
+    try {
+        const artists = await Artist.find({ name });
+
+        if (artists.length > 0) {
+            res.status(200).json({ msg: `Esta es la información que tenemos sobre ${name}:`, data: artists });
+        } else {
+            res.status(404).json({ msg: `No se han encontrado al artista ${name}`, data:{} });
+        }
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Ocurrió un error al filtrar por nombre de artista.", data: {} });
+    }
+};
+
 const getArtistsByGenre = async (req, res) => {
     const { genre } = req.params;
 
@@ -110,4 +128,4 @@ const updateArtistById = async (req, res) => {
     }
 };
 
-module.exports = { addArtist, getArtists, getArtistById, getArtistsByGenre, getArtistsByCountry, deleteArtistById, updateArtistById };
+module.exports = { addArtist, getArtists, getArtistById, getArtistsByName, getArtistsByGenre, getArtistsByCountry, deleteArtistById, updateArtistById };
