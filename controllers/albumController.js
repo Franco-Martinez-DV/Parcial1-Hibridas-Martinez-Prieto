@@ -19,7 +19,7 @@ const addAlbum = async (req, res) => {
 
 const getAlbums = async (req, res) => {
     const album = await Album.find();
-    res.status(500).json({ msg: "Se encontró el album.", data: album });
+    res.status(500).json({ msg: "Estos son los albums disponibles:", data: album });
 };
 
 const getAlbumById = async (req, res) => {
@@ -35,7 +35,24 @@ const getAlbumById = async (req, res) => {
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Ocurrió un error al buscar el album.", data: {} });
+        res.status(500).json({ msg: "Ocurrió un error al buscar el album por ID.", data: {} });
+    }
+};
+
+const getAlbumByGenre = async (req, res) => {
+    const { genre } = req.params;
+
+    try {
+        const album = await Album.find({ genre });
+
+        if (album.length > 0) {
+            res.status(200).json({ msg: `Estos son los albums de género ${genre}.`, data: album });
+        } else {
+            res.status(404).json({ msg: `No se encontraron albums del género ${genre}.`, data: {} });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: "Ocurrió un error al filtrar por género.", data: {} });
     }
 };
 
@@ -64,7 +81,7 @@ const updateAlbumById = async (req, res) => {
         const album = await Album.findByIdAndUpdate(id, { title, released_by, release_date, genre, cover_art, tracklist, is_explicit, label, sells, awards }, {new: true});
 
         if (album) {
-            res.status(200).json({ msg: "Album actualizado.", data: artist });
+            res.status(200).json({ msg: "Album actualizado.", data: album });
         } else {
             res.status(404).json({ msg: "No se pudo actualizar el album.", data: {} });
         }
@@ -74,4 +91,4 @@ const updateAlbumById = async (req, res) => {
     }
 };
 
-module.exports = { addAlbum, getAlbums, getAlbumById, deleteAlbumById, updateAlbumById };
+module.exports = { addAlbum, getAlbums, getAlbumById, getAlbumByGenre, deleteAlbumById, updateAlbumById };

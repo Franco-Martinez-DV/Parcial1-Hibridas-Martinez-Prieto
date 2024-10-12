@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 /* ------------------------- Importo el Controlador ------------------------- */
-const { addAlbum, getAlbums, getAlbumById, deleteAlbumById, updateAlbumById } = require('../controllers/albumController');
+const { addAlbum, getAlbums, getAlbumById, getAlbumByGenre, deleteAlbumById, updateAlbumById } = require('../controllers/albumController');
 
 router.get('/', getAlbums);
-router.post('/', addAlbum);
 router.get('/:id', getAlbumById);
-router.delete('/:id', deleteAlbumById);
+router.get('/genre/:genre', getAlbumByGenre);
+
+router.post('/', addAlbum);
 router.put('/:id', updateAlbumById);
+router.delete('/:id', deleteAlbumById);
 
 module.exports = router;
