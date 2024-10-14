@@ -10,10 +10,10 @@ const addArtist = async (req, res) => {
     try {
         const newArtist = new Artist({ name, biography, birthdate, genre, discography, country, awards, socialMedia });
         await newArtist.save();
-        res.status(200).json({ msg: "Se creó el artista correctamente.", data: {newArtist} });
+        res.status(200).json({ msg: "Se creó el artista correctamente: " + `${newArtist.name}`, data: {newArtist} });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Ocurrió un error al querer crear el artista.", data: {} });
+        res.status(500).json({ msg: "Ocurrió un error al querer crear un nuevo artista.", data: {} });
     }
 };
 
@@ -29,7 +29,7 @@ const getArtistById = async (req, res) => {
         const artist = await Artist.findById(id);
 
         if (artist) {
-            res.status(200).json({ msg: "Se encontró al artista por ID.", data: artist });
+            res.status(200).json({ msg: `Se encontró al artista por ID: ${artist.name}`, data: artist });
         } else {
             res.status(404).json({ msg: "No se encontró al artista por ID.", data: {} });
         }
@@ -46,9 +46,9 @@ const getArtistsByName = async (req, res) => {
         const artists = await Artist.find({ name });
 
         if (artists.length > 0) {
-            res.status(200).json({ msg: `Esta es la información que tenemos sobre ${name}:`, data: artists });
+            res.status(200).json({ msg: `Esta es la información que tenemos sobre '${name}':`, data: artists });
         } else {
-            res.status(404).json({ msg: `No se han encontrado al artista ${name}`, data:{} });
+            res.status(404).json({ msg: `No se han encontrado al artista '${name}'`, data:{} });
         }
         
     } catch (error) {
@@ -71,7 +71,7 @@ const getArtistsByGenre = async (req, res) => {
         
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Ocurrió un error al filtrar por género.", data: {} });
+        res.status(500).json({ msg: "Ocurrió un error al filtrar artistas por género.", data: {} });
     }
 };
 
@@ -89,7 +89,7 @@ const getArtistsByCountry = async (req, res) => {
         
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Ocurrió un error al filtrar por país.", data: {} });
+        res.status(500).json({ msg: "Ocurrió un error al filtrar artistas por país.", data: {} });
     }
 };
 
@@ -100,9 +100,9 @@ const deleteArtistById = async (req, res) => {
         const artist = await Artist.findByIdAndDelete(id);
 
         if (artist) {
-            res.status(200).json({ msg: "Artista borrado por ID.", data: artist });
+            res.status(200).json({ msg: `${artist.name} ha sido borrado por ID.`, data: artist });
         } else {
-            res.status(404).json({ msg: "No se pudo borrar al artista por ID.", data: {} });
+            res.status(404).json({ msg: "No se pudo borrar al artista.", data: {} });
         }
     } catch (error) {
         console.error(error);
@@ -118,13 +118,13 @@ const updateArtistById = async (req, res) => {
         const artist = await Artist.findByIdAndUpdate(id, { name, biography, birthdate, genre, discography, country, awards, socialMedia }, {new: true});
 
         if (artist) {
-            res.status(200).json({ msg: "Artista actualizado por ID.", data: artist });
+            res.status(200).json({ msg: `Se actualizó al artista: ${artist.name}`, data: artist });
         } else {
-            res.status(404).json({ msg: "No se pudo actualizar al artista por ID.", data: {} });
+            res.status(404).json({ msg: "No se pudo actualizar al artista.", data: {} });
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ msg: "Ocurrió un error al querer actualizar el artista por ID.", data: {} });
+        res.status(500).json({ msg: "Ocurrió un error al querer actualizar el artista.", data: {} });
     }
 };
 

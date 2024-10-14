@@ -10,7 +10,7 @@ const salt = 10;
 const creatUser = async ( req, res ) => {
     const { name, email, password } = req.body;
 
-    if( !name || !email || !password){
+    if( !name || !email || !password ){
         res.status(400).json({ msg: 'Faltan paramatros obligatorios.', data: { name, email, password }  })
     }
 
@@ -37,7 +37,7 @@ const login = async (req, res) => {
         }
 
         const passwordOk = await bcrypt.compare( password, user.password );
-        if(!password){
+        if(!passwordOk){
             res.status(401).json({ msg : "La contraseña es incorrecta.", data : {} });
         }
 
@@ -94,16 +94,19 @@ const deleteUserById = async ( req, res) => {
         res.status(500).json({ msg: 'Hubo un error al querer borrar el usuario.', data: {}})
     }
 }
+
 const updateUserById = async ( req, res) => {
     const { id } = req.params;
     const { name, email, password} = req.body;
 
     try {
-        const user = await User.findByIdAndUpdate(id, { name, email, password}, {new: true});
+        const passwordHash = await bcrypt.hash(password, salt);
+        const user = await User.findByIdAndUpdate(id, { name, email, password: passwordHash }, {new: true});
+
         if( user ){
-            res.status(200).json({ msg: "Se encontró al usuario por ID correctamente.", data: user});
+            res.status(200).json({ msg: "Se actualizó al usuario correctamente.", data: user});
         } else {
-            res.status(404).json({ msg: "No see encontró al usuario por ID.", data: { }});
+            res.status(404).json({ msg: "Hubo un error al actualizar al usuario.", data: { }});
 
         }
     } catch (error) {

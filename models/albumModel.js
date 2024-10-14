@@ -7,10 +7,7 @@ const albumSchema = new Schema({
         type: String,
         required: true
     },
-    released_by: {
-        type: Schema.Types.ObjectId,
-        ref: 'Artist'
-    },
+    released_by: String,
     release_date: Date,
     genre: [String],
     cover_art: String,
