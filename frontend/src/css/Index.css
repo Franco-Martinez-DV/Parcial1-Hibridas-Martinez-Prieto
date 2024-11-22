@@ -1,0 +1,15 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.home-background {  
+    background:
+        linear-gradient(to top right, rgba(0, 0, 0, 0.751), rgba(255, 255, 255, 0.148)),
+        url('Images/Backgrounds/river-plate-recibimiento.jpg');
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}  
