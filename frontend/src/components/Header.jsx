@@ -11,7 +11,7 @@ function Header() {
                 to="/"
                 className="px-5 rounded-full"
             >
-                <img src="Icons/river-plate-badge.png" alt="Escudo de River Plate."  className="w-16"/>
+                <img src="/public/Icons/river-plate-badge.png" alt="Escudo de River Plate."  className="w-16"/>
             </NavLink>
 
             <Menu />

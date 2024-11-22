@@ -4,10 +4,12 @@ import '../css/Index.css';
 import '../css/Tailwind.css';
 
 const routes = [
-    {name : "Inicio",           path : "/",           id : "home"},
-    {name : "Productos",        path : "/products",   id : "products"},
-    {name : "Iniciar sesión",   path : "/sign-in",    id : "sign-in"},
-    {name : "Registrarse",      path : "/log-in",      id : "log-in"}
+    {name : "Inicio",             path : "/",                        id : "home"},
+    {name : "Productos",          path : "/products",                id : "products"},
+    {name : "Agregar productos",  path : "/products/add_camiseta",   id : "add-products"},
+    {name : "Agregar prendas",    path : "/products/add_prenda",     id : "add-prendas"},
+    {name : "Iniciar sesión",     path : "/sign-in",                 id : "sign-in"},
+    {name : "Registrarse",        path : "/log-in",                  id : "log-in"}
 ]
 
 function Menu() {
