@@ -91,7 +91,7 @@ function AddProductsView() {
                         <div className="flex flex-col gap-2 w-full">
                             <label htmlFor="imagen_principal" className="w-max font-semibold">URL de la imágen de portada:</label>
                             <input
-                                type="url"
+                                type="text"
                                 name="imagen_principal"
                                 id="imagen_principal"
                                 autoComplete="off"

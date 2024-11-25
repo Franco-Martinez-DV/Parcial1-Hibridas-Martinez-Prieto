@@ -12,12 +12,12 @@ const popularProducts = [
     {
         id : "river-plate-camiseta-alternativa-2024",
         title : "Camiseta alternativa 24/25",
-        image : "Images/Products/river-plate-camiseta-alternativa-2024.png",
+        image : "Images/Products/river-plate-camiseta-suplente-2024.png",
         price : 119999
     },
     {
         id : "river-plate-campera-rompeviento-2024",
-        title : "Campera Rompeviento 24/25",
+        title : "Campera Rompeviento 24/25",    
         image : "Images/Products/river-plate-campera-rompeviento-2024.png",
         price : 169999
     }
