@@ -20,7 +20,7 @@ const camisetasSchema = new Schema({
     },
     imagen_secundaria: String,
     imagen_terciaria: String,
-    imagen_cuartenaria: String,
+    imagen_cuaternaria: String,
     temporada: {
         type: String,
         required: true

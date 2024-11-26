@@ -1,14 +1,14 @@
 const Camiseta = require('../models/camisetasSchema');
 
 async function addCamiseta(req, res) {
-    const { camiseta, categoria, precio, imagen_principal, imagen_secundaria, imagen_terciaria, imagen_cuartaria, temporada } = req.body;
+    const { camiseta, categoria, precio, imagen_principal, imagen_secundaria, imagen_terciaria, imagen_cuaternaria, temporada } = req.body;
 
     if (!camiseta || !categoria || !precio || !imagen_principal || !temporada ) {
         res.status(400).json({ msg: "Faltan parámetros obligatorios.", data: [{ camiseta: camiseta, categoria: categoria, precio: precio, imagen_principal: imagen_principal, temporada: temporada }] });
     }
 
     try {
-        const newCamiseta = new Camiseta({ camiseta, categoria, precio, imagen_principal, imagen_secundaria, imagen_terciaria, imagen_cuartaria, temporada });
+        const newCamiseta = new Camiseta({ camiseta, categoria, precio, imagen_principal, imagen_secundaria, imagen_terciaria, imagen_cuaternaria, temporada });
         await newCamiseta.save();
         res.status(200).json({ msg: "Se agregó la camiseta correctamente: " + `${newCamiseta.camiseta}`, data: {newCamiseta} });
     } catch (error) {
@@ -94,10 +94,10 @@ async function deleteCamisetasById(req, res) {
 
 async function updateCamisetasById(req, res) {
     const { id } = req.params;
-    const { camiseta, categoria, precio, imagen_principal, imagen_secundaria, imagen_terciaria, imagen_cuartaria, temporada } = req.body;
+    const { camiseta, categoria, precio, imagen_principal, imagen_secundaria, imagen_terciaria, imagen_cuaternaria, temporada } = req.body;
 
     try {
-        const updateCamiseta = await Camiseta.findByIdAndUpdate(id, { camiseta, categoria, precio, imagen_principal, imagen_secundaria, imagen_terciaria, imagen_cuartaria, temporada }, {new: true});
+        const updateCamiseta = await Camiseta.findByIdAndUpdate(id, { camiseta, categoria, precio, imagen_principal, imagen_secundaria, imagen_terciaria, imagen_cuaternaria, temporada }, {new: true});
 
         if (updateCamiseta) {
             res.status(200).json({ msg: `Se actualizó la camiseta: ${updateCamiseta.camiseta}`, data: updateCamiseta });

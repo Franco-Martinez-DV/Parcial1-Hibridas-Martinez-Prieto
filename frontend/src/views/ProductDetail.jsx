@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import MainTitle from "../components/MainTitle";
 
 function ProductDetailView() {
-    let [ productoBuscado, setProductoBuscado ] = useState(null);
+    let   [ productoBuscado, setProductoBuscado ] = useState(null);
+    const [ currentIndex, setCurrentIndex ] = useState(0);
     const { id } = useParams();
 
     const getProducts = async () => {
@@ -21,6 +24,37 @@ function ProductDetailView() {
         return <p>ERROR - No se encontró este producto.</p>;
     }
 
+    const productImages = [
+        {
+            currentIndex: 0,
+            image: productoBuscado.imagen_principal
+        },
+        {
+            currentIndex: 1,
+            image: productoBuscado.imagen_secundaria
+        },
+        {
+            currentIndex: 2,
+            image: productoBuscado.imagen_terciaria
+        },
+        {
+            currentIndex: 3,
+            image: productoBuscado.imagen_cuaternaria
+        }
+    ]
+
+    const validImages = productImages.filter(image => image.image);
+    const handlePrev = () => {
+        setCurrentIndex((prevIndex) => 
+            (prevIndex - 1 + validImages.length) % validImages.length
+        );
+    };
+    const handleNext = () => {
+        setCurrentIndex((prevIndex) => 
+            (prevIndex + 1) % validImages.length
+        );
+    };
+
     const priceFormat = new Intl.NumberFormat("es-AR", {
         style: "currency",
         currency: "ARS"
@@ -29,50 +63,44 @@ function ProductDetailView() {
     return (
         <>
             <section className="min-h-screen mt-20">
-                <h1 className="p-5 text-black text-4xl font-bold uppercase">
-                    {productoBuscado.camiseta} - {productoBuscado.temporada} - {productoBuscado.categoria}
-                </h1>
-
-                <div className="flex flex-row gap-4 m-5">
-                    <div className="flex flex-row gap-4 w-1/2 p-5 bg-neutral-400 rounded-s-lg">
-                        <div className="flex flex-col items-center justify-between gap-4 w-3/12">
+                <div className="flex flex-row gap-5 p-5">
+                    <div className="relative flex flex-row items-center w-8/12 rounded-lg overflow-hidden">
+                        {validImages.length > 0 && (
                             <img
-                                src={productoBuscado.imagen_principal}
-                                alt={productoBuscado.camiseta}
-                                className="w-full p-5 bg-white border-2 border-transparent rounded-ss-lg transition-colors cursor-pointer hover:border-black"
+                                src={validImages[currentIndex].image}
+                                alt={`${productoBuscado.camiseta} - imagen número ${currentIndex}`}
+                                className="w-full p-5"
                             />
+                        )}
 
-                            <img
-                                src={productoBuscado.imagen_principal}
-                                alt={productoBuscado.camiseta}
-                                className="w-full p-5 bg-white border-2 border-transparent transition-colors cursor-pointer hover:border-black"
-                            />
+                        <button
+                            type="button"
+                            className="absolute left-0 top-1/2 flex items-center justify-center p-2 bg-black bg-opacity-50 rounded-full transition-colors ease-in hover:bg-opacity-75 disabled:bg-opacity-30 disabled:cursor-default"
+                            onClick={handlePrev}
+                            disabled={validImages.length === 1}
+                        >
+                            <ChevronLeft className="size-6 text-white" />
+                        </button>
 
-                            <img
-                                src={productoBuscado.imagen_principal}
-                                alt={productoBuscado.camiseta}
-                                className="w-full p-5 bg-white border-2 border-transparent rounded-es-lg transition-colors cursor-pointer hover:border-black"
-                            />
-                        </div>
-
-                        <div className="w-4/5">
-                            <img
-                                src={productoBuscado.imagen_principal}
-                                alt={productoBuscado.camiseta}
-                                className="w-full p-5 bg-white rounded-e-lg cursor-pointer"
-                            />
-                        </div>
+                        <button
+                            type="button"
+                            className="absolute right-0 top-1/2 flex items-center justify-center p-2 bg-black bg-opacity-50 rounded-full transition-colors ease-in hover:bg-opacity-75 disabled:bg-opacity-30 disabled:cursor-default"
+                            onClick={handleNext}
+                            disabled={validImages.length === 1}
+                        >
+                            <ChevronRight className="size-6 text-white" />
+                        </button>
                     </div>
 
-                    <div className="flex flex-col gap-4 w-1/2">
-                        <h2 className="w-max p-4 text-3xl font-medium">
-                            {productoBuscado.camiseta}
-                        </h2>
+                    <div className="flex flex-col gap-5 w-full p-5">
+                        <MainTitle title={`${productoBuscado.camiseta} ${productoBuscado.categoria} - ${productoBuscado.temporada}`}/>
 
-                        <div className="mx-4">
+                        <div>
                             <p><span className="text-[#E2211C] font-semibold">Categoría: </span>{productoBuscado.categoria}</p>
                             <p><span className="text-[#E2211C] font-semibold">Temporada: </span>{productoBuscado.temporada}</p>
-                            <p><span className="text-[#E2211C] font-semibold">Precio: </span>{priceFormat.format(productoBuscado.precio)}</p>
+                            <p><span className="text-[#E2211C] font-semibold">
+                                Precio: </span>{priceFormat.format(productoBuscado.precio)}
+                            </p>
                         </div>
                     </div>
                 </div>

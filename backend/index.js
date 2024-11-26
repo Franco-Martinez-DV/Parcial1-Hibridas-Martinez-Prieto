@@ -22,7 +22,7 @@ db.once('open', () => {
 
 app.use(express.json()); 
 app.get('/', (req, res) => {
-    res.status(200).send('<h1> ARTISTAS </h1>');
+    res.status(200).send('<h1> CAMISETAS </h1>');
 });
 
 routerAPI(app);

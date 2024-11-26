@@ -1,18 +1,19 @@
 import { NavLink } from "react-router-dom";
 import { ShoppingCart, BadgeDollarSign, X } from 'lucide-react';
 import { useState } from "react";
+import MainTitle from "../components/MainTitle";
 
 const popularProducts = [
     {
         id : "river-plate-camiseta-titular-2024",
         title : "Camiseta titular 24/25",
-        image : "Images/Products/river-plate-camiseta-titular-2024.png",
+        image : "Images/Products/Camiseta-Actual/river-plate-camiseta-titular-2024.png",
         price : 119999
     },
     {
         id : "river-plate-camiseta-alternativa-2024",
         title : "Camiseta alternativa 24/25",
-        image : "Images/Products/river-plate-camiseta-suplente-2024.png",
+        image : "Images/Products/Camiseta-Actual/river-plate-camiseta-suplente-2024.png",
         price : 119999
     },
     {
@@ -39,9 +40,9 @@ function HomeView() {
             <section>
                 <div className="h-screen w-full bg-cover bg-center home-background">
                     <div className="flex flex-col items-start justify-end gap-2 p-10 h-full w-1/2 text-white">
-                        <h1 className="text-3xl font-bold uppercase">
-                            La tienda del mil<span className="text-[#E2211C]">lona</span>rio
-                        </h1>
+                        <MainTitle title={
+                            <span>La tienda del mil<span className="text-[#E2211C]">lona</span>rio</span>
+                        }/>
 
                         <p className="text-xl">Bienvenido a nuestra tienda, acá vas a encontrar todos los artículos relacionados al Club Atlético River Plate. Desde camisetas actuales hasta ropa retro, y todo esto con la posibilidad de pagar en la cantidad de cuotas que usted guste. Podés empezar a mirar nuestra página de <NavLink to="/products" className="text-red-400 underline">productos</NavLink> donde vas a encontrar eso que buscas.</p>
                     </div>

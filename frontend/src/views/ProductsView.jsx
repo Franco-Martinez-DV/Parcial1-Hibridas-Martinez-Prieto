@@ -1,7 +1,8 @@
-import { Search, SearchXIcon, Heart } from "lucide-react";
-import Loader from "../components/Loader";
-import { NavLink } from "react-router-dom";
+import { Search, SearchXIcon } from "lucide-react";
 import { useState, useEffect } from "react";
+import Loader from "../components/Loader";
+import MainTitle from "../components/MainTitle";
+import ProductCard from "../components/ProductCard";
 
 function ProductsView() {
     /* let [ recargar2 ] = useState(false);
@@ -22,7 +23,7 @@ function ProductsView() {
     let [ productos, setProductos ] = useState([]);
     let [ productosFiltrados, setProductosFiltrados ] = useState([]);
     let [ terminoBuscado, setTerminoBuscado ] = useState("");
-    let [terminoMostrado, setTerminoMostrado] = useState("");
+    let [ terminoMostrado, setTerminoMostrado ] = useState("");
 
     const getProducts = async () => {
         const resp = await fetch('http://127.0.0.1:3000/api/camisetas');
@@ -68,9 +69,9 @@ function ProductsView() {
     return (
         <>
             <section className={productosFiltrados.length > 0 ? "mt-20" : "min-h-screen mt-20"}>
-                <h1 className="p-5 text-black text-4xl font-bold uppercase">
-                    Camisetas
-                </h1>
+                <div className="p-5">
+                    <MainTitle title="Camisetas"/>
+                </div>
 
                 <div className="flex flex-col justify-between">
                     <header
@@ -125,59 +126,38 @@ function ProductsView() {
                                 productosFiltrados.length > 0 ?
                                 <div className="grid grid-cols-3 gap-5 w-4/5 p-5">
                                     {productosFiltrados.map((product) => (
-                                        <NavLink
-                                            to={`/product/${product._id}`}
-                                            className="relative z-0 flex flex-col justify-between rounded-lg"
+                                        <ProductCard
                                             key={product._id}
-                                        >
-                                            <button
-                                                type="button"
-                                                className="absolute top-3 right-3 z-10 p-2 bg-white border-2 border-transparent rounded-full"
-                                            >
-                                                <Heart className="size-5 text-transparent fill-neutral-400"/>
-                                            </button>
-
-                                            <div className="flex flex-col items-center rounded-ss-lg rounded-se-lg overflow-hidden">
-                                                <img
-                                                    src={product.imagen_principal}
-                                                    alt={product.camiseta}
-                                                    className="w-ful p-5 bg-neutral-300 transform transition-transform duration-300 ease-in-out hover:scale-125"
-                                                />
-                                            </div>
-
-                                            <div className="flex flex-col gap-2 p-4 border-x border-neutral-300 border-b rounded-es-lg rounded-ee-lg">
-                                                <h2 className="text-lg  hover:underline">
-                                                    {product.camiseta} - {product.temporada} - {product.categoria}
-                                                </h2>
-
-                                                <p className="font-semibold">
-                                                    ${product.precio}
-                                                </p>
-                                            </div>
-                                        </NavLink>
+                                            myId={product._id}
+                                            title={product.camiseta}
+                                            imgSrc={product.imagen_principal}
+                                            categoria={product.categoria}
+                                            temporada={product.temporada}
+                                            precio={product.precio}
+                                        />
                                     ))}
                                 </div>
                                 :
-                                <div className="flex flex-col items-center gap-8 min-h-screen w-full p-5">
-                                        <p className="text-xl text-center">
-                                            No se encontró un resultado para <span className="font-bold">"{terminoMostrado}"</span>.
-                                        </p>
+                                <div className="flex flex-col items-center gap-8 min-h-screen w-4/5 p-5">
+                                    <p className="text-xl text-center">
+                                        No se encontró un resultado para <span className="font-bold">"{terminoMostrado}"</span>.
+                                    </p>
 
-                                        <div className="flex flex-row items-center gap-4">
-                                            <button
-                                                type="button"
-                                                onClick={reestablishProducts}
-                                                className="flex flex-row items-center gap-2 p-2 bg-red-500 text-white font-semibold rounded-lg transition-colors hover:bg-red-600"
-                                            >
-                                                <SearchXIcon className="size-5"/> Reestablecer busqueda
-                                            </button>
-                                        </div>
+                                    <div className="flex flex-row items-center gap-4">
+                                        <button
+                                            type="button"
+                                            onClick={reestablishProducts}
+                                            className="flex flex-row items-center gap-2 p-2 bg-red-500 text-white font-semibold rounded-lg transition-colors hover:bg-red-600"
+                                        >
+                                            <SearchXIcon className="size-5"/> Reestablecer busqueda
+                                        </button>
+                                    </div>
                                 </div>
                             :
                             <Loader />
                         }
 
-                        <aside className="flex flex-col items-start gap-5 min-h-screen w-1/5 p-5 border-l border-black">
+                        <aside className="flex flex-col items-start gap-5 min-h-screen w-1/5 p-5">
                             <h3 className="text-2xl font-semibold">Filtros</h3>
 
                             <div className="flex flex-col items-start gap-4 w-full">

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import MainTitle from "../components/MainTitle";
 
 function SignInView() {
     const [ formData, setFormData ] = useState({ email: "", password: "" });
@@ -23,7 +24,6 @@ function SignInView() {
             }
 
             const response = await fetch(endPoint, config);
-
             if (!response.ok) {
                 console.error(response);
             }
@@ -36,10 +36,6 @@ function SignInView() {
                     email: "",
                     password: ""
                 });
-
-                setInterval(() => {
-                    window.location.pathname = "/";
-                }, 1500);
             }
         } catch (error) {
             console.error(error);
@@ -50,12 +46,12 @@ function SignInView() {
     return (
         <>
             <section className="mt-20 min-h-screen">
-                <h2 className="p-5 text-black text-2xl font-semibold text-center uppercase">
-                    Inicia sesión
-                </h2>
+            <div className="p-5">
+                    <MainTitle title="Iniciá sesión"/>
+                </div>
 
                 <div className="flex flex-col gap-8 p-5 w-full">
-                    <form action="" className="flex flex-col items-center gap-4 w-full" onSubmit={handleSubmit}>
+                    <form action="" className="flex flex-col items-start gap-4 w-full" onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-2 w-1/2">
                             <label htmlFor="email" className="w-max font-semibold">Correo electrónico</label>
                             <input
@@ -94,9 +90,11 @@ function SignInView() {
                         </div>
                     </form>
 
-                    <p className="text-center">
-                        ¿No tenés una cuenta? <NavLink to="/log-in" className="text-red-600 underline">Registrate.</NavLink>
-                    </p>
+                    <div className="w-full">
+                        <p className="w-1/2 text-center">
+                            ¿No tenés una cuenta? <NavLink to="/log-in" className="text-red-600 underline">Registrate.</NavLink>
+                        </p>
+                    </div>
                 </div>
             </section>
         </>

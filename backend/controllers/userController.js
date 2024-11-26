@@ -7,12 +7,14 @@ const salt = 10;
 
 async function createUser(req, res) {
     try {
-        const { name, email, password, repeatPassword } = req.body;
+        const { name, email, password } = req.body;
         const passwordHash = await bcrypt.hash(password, salt);
         
         console.log(passwordHash);
         
-        if(password === repeatPassword) {
+        if(!name || !email || !password) {
+            res.status(401).json({ msg : "Faltan parámetros.", data : {} });
+        } else {
             const newUser = new User ({
                 name: name,
                 email: email,
@@ -22,8 +24,6 @@ async function createUser(req, res) {
             await newUser.save();
     
             res.status(200).json({ msg: 'Usuario Creado', data: newUser});
-        } else {
-            res.status(401).json({ msg : "Las contraseñas no coinciden.", data : {} });
         }
     } catch (error) {
         console.error(error);

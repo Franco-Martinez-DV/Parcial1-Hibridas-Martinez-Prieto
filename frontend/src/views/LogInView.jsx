@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import MainTitle from "../components/MainTitle";
 
 function LoginView() {
-    const [ formData, setFormData ] = useState({ name: "", email: "", password: "", repeatPassword: "" });
+    const [ formData, setFormData ] = useState({ name: "", email: "", password: "" });
 
     const handleData = (event) => {
         const { name, value } = event.target;
@@ -36,7 +37,6 @@ function LoginView() {
                     name: "",
                     email: "",
                     password: "",
-                    repeatPassword: ""
                 });
             }
         } catch (error) {
@@ -48,12 +48,12 @@ function LoginView() {
     return (
         <>
             <section className="mt-20 min-h-screen">
-                <h2 className="p-5 text-black text-2xl font-semibold text-center uppercase">
-                    Crea tu cuenta
-                </h2>
+                <div className="p-5">
+                    <MainTitle title="Creá tu cuenta"/>
+                </div>
 
                 <div className="flex flex-col gap-8 p-5 w-full">
-                    <form action="" className="flex flex-col items-center gap-4 w-full" onSubmit={handleSubmit} autoComplete="on">
+                    <form action="" className="flex flex-col items-start gap-4 w-full" onSubmit={handleSubmit} autoComplete="on">
                         <div className="flex flex-col gap-2 w-1/2">
                             <label htmlFor="name" className="w-max font-semibold">Nombre</label>
                             <input
@@ -96,20 +96,6 @@ function LoginView() {
                             />
                         </div>
 
-                        <div className="flex flex-col gap-2 w-1/2">
-                            <label htmlFor="repeatPassword" className="w-max font-semibold">Repetir contraseña</label>
-                            <input
-                                type="password"
-                                name="repeatPassword"
-                                id="repeatPassword"
-                                autoComplete="off"
-                                placeholder="contraseña1234"
-                                onChange={handleData}
-                                value={formData.repeatPassword}
-                                className="p-3 w-full bg-gray-300 rounded-lg outline-none transition-colors placeholder:text-black placeholder:text-opacity-75 focus:bg-gray-100 focus:placeholder:text-opacity-60"
-                            />
-                        </div>
-
                         <div className="flex flex-col gap-2 mt-8 w-1/2">
                             <button
                                 type="submit"
@@ -120,9 +106,11 @@ function LoginView() {
                         </div>
                     </form>
 
-                    <p className="text-center">
-                        ¿Ya tenés una cuenta? <NavLink to="/sign-in" className="text-red-600 underline">Inicia sesión.</NavLink>
-                    </p>
+                    <div className="w-full">
+                        <p className="w-1/2 text-center">
+                            ¿Ya tenés una cuenta? <NavLink to="/sign-in" className="text-red-600 underline">Inicia sesión.</NavLink>
+                        </p>
+                    </div>
                 </div>
             </section>
         </>
